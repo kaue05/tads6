@@ -1,127 +1,176 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projetin dos Cria - Git & Pull Requests</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        background: '#ffffff',
-                        foreground: '#0f172a',
-                        primary: '#3b82f6',
-                        'muted-foreground': '#64748b',
-                        muted: '#f1f5f9',
-                        border: '#e2e8f0'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: "#ffffff",
+              foreground: "#0f172a",
+              primary: "#3b82f6",
+              "muted-foreground": "#64748b",
+              muted: "#f1f5f9",
+              border: "#e2e8f0",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="min-h-screen bg-background p-8">
+  </head>
+  <body class="min-h-screen bg-background p-8">
     <div class="max-w-4xl mx-auto space-y-8">
-        <!-- Header -->
-        <header class="text-center space-y-4">
-            <h1 class="text-4xl font-bold text-foreground">Projeto da Turma - Git & Pull Requests</h1>
-            <p class="text-muted-foreground text-lg">Uma página simples para praticar colaboração com Git</p>
-        </header>
+      <!-- Header -->
+      <header class="text-center space-y-4">
+        <h1 class="text-4xl font-bold text-foreground">
+          Projeto da Turma - Git & Pull Requests
+        </h1>
+        <p class="text-muted-foreground text-lg">
+          Uma página simples para praticar colaboração com Git
+        </p>
+      </header>
 
-        <!-- Contador Interativo -->
-        <div class="bg-white border border-border rounded-lg shadow-sm">
-            <div class="p-6 pb-4">
-                <h3 class="text-lg font-semibold">Contador Colaborativo</h3>
-                <p class="text-sm text-muted-foreground">Cada membro pode incrementar este contador via PR</p>
-            </div>
-            <div class="p-6 pt-0 space-y-4">
-                <div class="text-center">
-                    <div id="contador" class="text-6xl font-bold text-primary mb-4">0</div>
-                    <div class="space-x-2">
-                        <button id="incrementar" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-600 transition-colors">
-                            Incrementar
-                        </button>
-                        <button id="decrementar" class="px-4 py-2 border border-border rounded-md hover:bg-muted transition-colors">
-                            Decrementar
-                        </button>
-                        <button id="reset" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors">
-                            Reset
-                        </button>
-                    </div>
-                </div>
-            </div>
+      <!-- Contador Interativo -->
+      <div class="bg-white border border-border rounded-lg shadow-sm">
+        <div class="p-6 pb-4">
+          <h3 class="text-lg font-semibold">Contador Colaborativo</h3>
+          <p class="text-sm text-muted-foreground">
+            Cada membro pode incrementar este contador via PR
+          </p>
         </div>
-
-        <!-- Lista de Membros da Equipe -->
-        <div class="bg-white border border-border rounded-lg shadow-sm">
-            <div class="p-6 pb-4">
-                <h3 class="text-lg font-semibold">Membros da Equipe</h3>
-                <p class="text-sm text-muted-foreground">Adicione seu nome via pull request!</p>
+        <div class="p-6 pt-0 space-y-4">
+          <div class="text-center">
+            <div id="contador" class="text-6xl font-bold text-primary mb-4">
+              0
             </div>
-            <div class="p-6 pt-0">
-                <div id="membros-grid" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <!-- Membros serão inseridos aqui via JavaScript -->
-                </div>
+            <div class="space-x-2">
+              <button
+                id="incrementar"
+                class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-600 transition-colors"
+              >
+                Incrementar
+              </button>
+              <button
+                id="decrementar"
+                class="px-4 py-2 border border-border rounded-md hover:bg-muted transition-colors"
+              >
+                Decrementar
+              </button>
+              <button
+                id="reset"
+                class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+              >
+                Reiniciar
+              </button>
             </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Lista de Tarefas do Projeto -->
-        <div class="bg-white border border-border rounded-lg shadow-sm">
-            <div class="p-6 pb-4">
-                <h3 class="text-lg font-semibold">Tarefas do Projeto</h3>
-                <p class="text-sm text-muted-foreground">Acompanhe o progresso das atividades</p>
-            </div>
-            <div class="p-6 pt-0">
-                <div id="tarefas-lista" class="space-y-3">
-                    <!-- Tarefas serão inseridas aqui via JavaScript -->
-                </div>
-            </div>
+      <!-- Lista de Membros da Equipe -->
+      <div class="bg-white border border-border rounded-lg shadow-sm">
+        <div class="p-6 pb-4">
+          <h3 class="text-lg font-semibold">Membros da Equipe</h3>
+          <p class="text-sm text-muted-foreground">
+            Adicione seu nome via pull request!
+          </p>
         </div>
-
-        <!-- Seção Expansível -->
-        <div class="bg-white border border-border rounded-lg shadow-sm">
-            <div class="p-6 pb-4">
-                <h3 class="text-lg font-semibold">Informações Adicionais</h3>
-                <p class="text-sm text-muted-foreground">Clique para ver mais detalhes sobre o projeto</p>
-            </div>
-            <div class="p-6 pt-0">
-                <button id="toggle-detalhes" class="px-4 py-2 border border-border rounded-md hover:bg-muted transition-colors mb-4">
-                    Mostrar Detalhes
-                </button>
-
-                <div id="detalhes-content" class="hidden space-y-4 p-4 bg-muted rounded-lg">
-                    <h3 class="font-semibold">Como contribuir:</h3>
-                    <ul class="list-disc list-inside space-y-2 text-sm">
-                        <li>Faça um fork do repositório</li>
-                        <li>Crie uma nova branch para sua feature</li>
-                        <li>Adicione seu nome à lista de membros</li>
-                        <li>Modifique cores, textos ou adicione novas funcionalidades</li>
-                        <li>Faça commit das suas mudanças</li>
-                        <li>Abra um Pull Request</li>
-                    </ul>
-
-                    <div class="mt-4">
-                        <h4 class="font-semibold mb-2">Ideias para PRs:</h4>
-                        <div class="grid gap-2 text-sm">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border">Adicionar tema escuro/claro</span>
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border">Criar nova seção</span>
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border">Melhorar estilos CSS</span>
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border">Adicionar animações</span>
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border">Implementar formulário</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="p-6 pt-0">
+          <div
+            id="membros-grid"
+            class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+          >
+            <!-- Membros serão inseridos aqui via JavaScript -->
+          </div>
         </div>
+      </div>
 
-        <!-- Footer -->
-        <footer class="text-center py-8 border-t border-border">
-            <p class="text-muted-foreground">Projeto criado para aprender Git e Pull Requests • 2024</p>
-        </footer>
+      <!-- Lista de Tarefas do Projeto -->
+      <div class="bg-white border border-border rounded-lg shadow-sm">
+        <div class="p-6 pb-4">
+          <h3 class="text-lg font-semibold">Tarefas do Projeto</h3>
+          <p class="text-sm text-muted-foreground">
+            Acompanhe o progresso das atividades
+          </p>
+        </div>
+        <div class="p-6 pt-0">
+          <div id="tarefas-lista" class="space-y-3">
+            <!-- Tarefas serão inseridas aqui via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção Expansível -->
+      <div class="bg-white border border-border rounded-lg shadow-sm">
+        <div class="p-6 pb-4">
+          <h3 class="text-lg font-semibold">Informações Adicionais</h3>
+          <p class="text-sm text-muted-foreground">
+            Clique para ver mais detalhes sobre o projeto
+          </p>
+        </div>
+        <div class="p-6 pt-0">
+          <button
+            id="toggle-detalhes"
+            class="px-4 py-2 border border-border rounded-md hover:bg-muted transition-colors mb-4"
+          >
+            Mostrar Detalhes
+          </button>
+
+          <div
+            id="detalhes-content"
+            class="hidden space-y-4 p-4 bg-muted rounded-lg"
+          >
+            <h3 class="font-semibold">Como contribuir:</h3>
+            <ul class="list-disc list-inside space-y-2 text-sm">
+              <li>Faça um fork do repositório</li>
+              <li>Crie uma nova branch para sua feature</li>
+              <li>Adicione seu nome à lista de membros</li>
+              <li>Modifique cores, textos ou adicione novas funcionalidades</li>
+              <li>Faça commit das suas mudanças</li>
+              <li>Abra um Pull Request</li>
+            </ul>
+
+            <div class="mt-4">
+              <h4 class="font-semibold mb-2">Ideias para PRs:</h4>
+              <div class="grid gap-2 text-sm">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border"
+                  >Adicionar tema escuro/claro</span
+                >
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border"
+                  >Criar nova seção</span
+                >
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border"
+                  >Melhorar estilos CSS</span
+                >
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border"
+                  >Adicionar animações</span
+                >
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border"
+                  >Implementar formulário</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-center py-8 border-t border-border">
+        <p class="text-muted-foreground">
+          Projeto criado para aprender Git e Pull Requests • 2024
+        </p>
+      </footer>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
