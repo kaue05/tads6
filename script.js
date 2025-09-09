@@ -5,7 +5,7 @@ let mostrarDetalhes = false
 // Lista de membros da equipe - fácil de modificar via PR
 const membrosEquipe = [
   { nome: "Luiz Paulo", papel: "full-stack developer", ativo: true },
-  { nome: "Kaue", papel: "full-stack developer and infraestructure analyst", ativo: true },
+  { nome: "Kaue", papel: "full-stack developer and infrastructure analyst", ativo: true },
   // TODO: Adicionar mais membros aqui
 ]
 
